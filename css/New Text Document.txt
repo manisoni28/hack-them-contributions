@@ -1,0 +1,1 @@
+This 'How To' is strictly for educational purposes only, either to help people begin to learn white hat hacking or to see how hackers work in order to protect their own sites better. This tutorial will provide you with the steps on how to gain access to many low security websites.

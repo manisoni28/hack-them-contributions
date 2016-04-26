@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome</title>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<!--Wrapper start-->
+<div id="wrapper">
+<div id="page">
+
+<!--Header start-->
+<div class="header">
+
+<div class="logo">
+<div class="small-logo"><img src="images/logo-small.png" alt="" width="220" height="65" /></div>
+<div class="home"><a href="index.html"><img src="images/home.png" alt="" /></a></div>
+</div>
+
+</div>
+<!--Header End-->
+
+<!--content start-->
+<div class="content">
+
+<h1 style="color:#333333">The Simple SQL Injection Hack</h1> 
+<p> 
+SQL Injection involves entering SQL code into web forms, eg. login fields, or into the browser address field, to access and manipulate the database behind the site, system or application.
+When you enter text in the Username and Password fields of a login screen, the data you input is typically inserted into an SQL command. This command checks the data you’ve entered against the relevant table in the database. If your input matches table/row data, you’re granted access (in the case of a login screen). If not, you’re knocked back out.</p>
+<img src="images/sql-inject.png" alt="" width="280" height="200" />
+
+<p> 
+In its simplest form, this is how the SQL Injection works. It’s impossible to explain this without reverting to code for just a moment. Don’t worry, it will all be over soon. <br/>
+Suppose we enter the following string in a User name field:
+<br/>
+<b style="color:#333333">‘ OR 1=1 — </b><br/>
+The authorization SQL query that is run by the server, the command which must be satisfied to allow access, will be something along the lines of:
+<br/><br/><b style="color:#333333">SELECT * FROM users WHERE username = ‘USRTEXT ‘
+AND password = ‘PASSTEXT’</b><br/>
+<br/>…where USRTEXT and PASSTEXT are what the user enters in the login fields of the web form.<br/>
+So entering <b style="color:#333333"> `OR 1=1 — </b>as your username, could result in the following actually being run: <br/><br/>
+ <b style="color:#333333"> SELECT * FROM users WHERE username = ‘‘ OR 1=1 — ‘AND password = ‘’ </b><br/>
+Two things you need to know about this:<br/>
+[‘] closes the [user-name] text field. <br/>
+‘--‘ <br/> is the SQL convention for Commenting code, and everything after Comment is ignored. So the actual routine now becomes:<br/>
+<b style="color:#333333">SELECT * FROM users WHERE user name = ” OR 1=1 </b> <br/>
+1 is always equal to 1, last time I checked. So the authorization routine is now validated, and we are ushered in the front door to wreck havoc.
+</p>
+
+<h1 style="color:#333333">Another Example</h1> 
+<p> 
+An Injection Attack could have this command line:<br/><br/>
+<b style="color:#333333">
+String query = “SELECT * FROM accounts WHERE custID='” + request.getParameter(“id”) +”‘”; </b> <br/>
+
+The hacker modifies the ‘id’ parameter in their browser to send: <b style="color:#333333">‘ or ‘1’=’1 </b>. This changes the meaning of the query to return all the records from the accounts database to the hacker, instead of only the intended customers.</p>
+
+</div>
+<!--content End-->
+
+<!--Footer start-->
+<div class="footer">
+
+
+<div class="footer-right"><a href="#"><img src="images/footer-right.png" alt="" width="100" height="30" /></a></div>
+</div>
+<!--Footer End-->
+
+</div>
+</div>
+<!--Wrapper End-->
+
+</body>
+
+
+</html>

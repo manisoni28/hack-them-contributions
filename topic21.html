@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome</title>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<!--Wrapper start-->
+<div id="wrapper">
+<div id="page">
+
+<!--Header start-->
+<div class="header">
+
+<div class="logo">
+<div class="small-logo"><img src="images/logo-small.png" alt="" width="220" height="65" /></div>
+<div class="home"><a href="index.html"><img src="images/home.png" alt="" /></a></div>
+</div>
+
+</div>
+<!--Header End-->
+
+<!--content start-->
+<div class="content">
+
+<h1 style="color:#333333">Cookie Poisoning</h1> 
+<p> On the Web, cookie poisoning is the modification of a cookie (personal information in a Web user's computer) by an attacker to gain unauthorized information about the user for purposes such as identity theft. The attacker may use the information to open new accounts or to gain access to the user's existing accounts.<br/><br/>
+Cookies stored on your computer's hard drive maintain bits of information that allow Web sites you visit to authenticate your identity, speed up your transactions, monitor your behavior, and personalize their presentations for you. However, cookies can also be accessed by persons unauthorized to do so. Unless security measures are in place, an attacker can examine a cookie to determine its purpose and edit it so that it helps them get user information from the Web site that sent the cookie.
+<br/><br/>
+To guard against cookie poisoning, Web sites that use them should protect cookies (through encryption, for example) before they are sent to a user's computer. Ingrian Networks' Active Application Security platform is one means of securing cookies. When cookies pass through the platform, sensitive information is encrypted. A digital signature is created that is used to validate the content in all future communications between the sender and the recipient. If the content is tampered with, the signature will no longer match the content and will be refused access by the serve
+<br/><br/>Well, for a starters i can begin with saying that Cookie Poisoning is alot like SQL Injection
+Both have  <br/>
+<b style="color:#333333">‘OR’1’=’1 </b>  <br/>or maybe <br/>
+<b style="color:#333333">‘1’=’1′ <br/></b>
+But in here you begin with alerting your cookies
+Javascript:alert(document.cookie)
+Then you will perharps see “username=JohnDoe”  <br/> and “password=iloveJaneDoe”
+here in this case the cookie poisoning could be as:
+Javascript:void(document.cookie=”username=’ <br/>OR’1’=’1″); void(document.cookie=”password=’OR’1’=’1″);
+It is also many versions of this kind… like for example
+<br/>
+<b style="color:#333333">
+‘
+<br/>
+‘1’=’1′
+<br/>
+‘OR’1’=’1
+<br/>
+‘OR’1’=’1’OR’ </b> <br/>
+and so on…
+
+<h1 style="color:#333333">Prevention</h1> 
+<p>You really can't stop it, but there are things you can do to make it harder and thereby less-attractive
+<br/>
+Require the user to use https (443) the entire session. This will prevent any man-in-the-middle attacks from sniffing the cookie
+<br/>
+Only allow one session to be active at a time. Once the second session shows up, the first session is invalidated.
+<br/>
+Require the user to provide his old password when changing the password (edit: or email address or anything else that could allow the account to be stolen once the attacker is logged in); this will prevent someone from hijacking the account and easily changing the password.
+<br/>
+Have a very limited life for the session cookie - maybe a few hours.
+<br/>
+That being said, since you have an open door into your system, you might want to ensure you're not storing any sensitive information that can be easily read by a user. So, for example, if a credit card or SSN is in the system, do not display it to the user.
+</p></div>
+<!--content End-->
+
+<!--Footer start-->
+<div class="footer">
+
+
+<div class="footer-right"><a href="#"><img src="images/footer-right.png" alt="" width="100" height="30" /></a></div>
+</div>
+<!--Footer End-->
+
+</div>
+</div>
+<!--Wrapper End-->
+
+</body>
+
+
+</html>
